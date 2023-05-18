@@ -14,12 +14,15 @@ public:
     /* Constructors */
     explicit DynamicArray(int size);
     DynamicArray();
+
     /* Destructor */
     ~DynamicArray();
+
     /* Constant methods */
     int indexOf(T element) const;
     void print() const;
     int getSize() const;
+
     /* Non-Constant Methods */
     void insert(T element);
     void removeAt(int index);
@@ -36,6 +39,7 @@ private:
 };
 
 /* Constructors */
+
 template<typename T>
 DynamicArray<T>::DynamicArray(int size) :size{size} {
     elements = new T[size];
@@ -45,12 +49,14 @@ DynamicArray<T>::DynamicArray() {
     size = 20;
 }
 /* Destructor */
+
 template<typename T>
 DynamicArray<T>::~DynamicArray() {
     delete[] elements;
     elements = nullptr;
 }
 /* Constant Methods */
+
 template <typename T>
 int DynamicArray<T>::indexOf(T element) const{
     for (int i = 0; i <= lastElementIndex; ++i) {
@@ -73,6 +79,7 @@ int DynamicArray<T>::getSize() const {
 }
 
 /* Non-Constant Methods */
+
 template <typename T>
 void DynamicArray<T>::expand(){
     T* temp = new T[size*2];
