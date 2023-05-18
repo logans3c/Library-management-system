@@ -7,7 +7,7 @@
 #include "User.h"
 #include "Book.h"
 
-class Customer : User {
+class Customer : public User {
 public:
     /** Constructors **/
     explicit Customer(std::string name);
