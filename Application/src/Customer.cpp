@@ -15,31 +15,31 @@ Customer::Customer(std::string name) : User(std::move(name)) {
 
 /** Const Methods **/
 
-std::vector<Book*> Customer::getBorrowedBooks() const {
+DynamicArray<Book*> Customer::getBorrowedBooks() const {
     return borrowedBooks;
 }
 
 int Customer::getBorrowedBooksCount() const {
-    return (int) borrowedBooks.size();
+    return (int) borrowedBooks.getSize();
 }
 
 /** Non-Const Methods **/
 
 void Customer::borrowBook(Book *book) {
-    if (borrowedBooks.size() >= Customer::maxBorrowedBooks){
+    if (borrowedBooks.getSize() >= Customer::maxBorrowedBooks){
         throw "Maximum number of borrowed books reached!";
     }
     book->markAsBorrowed();
-    borrowedBooks.push_back(book);
+    borrowedBooks.insert(book);
 }
 
 void Customer::returnBook(Book *returnedBook) {
-    auto it = borrowedBooks.begin();
-
-    for (it = borrowedBooks.begin(); it != borrowedBooks.end(); ++it) {
-        if (*it == returnedBook) {
-            (*it)->markAsReturned();
-            borrowedBooks.erase(it);
+    int size = borrowedBooks.getSize();
+    for (int i = 0; i < size; ++i) {
+        if (borrowedBooks[i] == returnedBook) {
+            (borrowedBooks[i])->markAsReturned();
+            borrowedBooks.removeAt(i);
+            break;
         }
     }
 }

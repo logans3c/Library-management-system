@@ -2,10 +2,10 @@
 #define INC_23_05_CUSTOMER_H
 
 #include <iostream>
-#include <vector>
 
 #include "User.h"
 #include "Book.h"
+#include "DynamicArray.h"
 
 class Customer : public User {
 public:
@@ -13,7 +13,7 @@ public:
     explicit Customer(std::string name);
 
     /** Const Methods **/
-    std::vector<Book*> getBorrowedBooks() const;
+    DynamicArray<Book*> getBorrowedBooks() const;
     int getBorrowedBooksCount() const;
     
 
@@ -27,7 +27,7 @@ private:
     static int maxBorrowedBooks;
 
     /** Non-Static Members **/
-    std::vector<Book*> borrowedBooks;
+    DynamicArray<Book*> borrowedBooks;
 };
 
 
