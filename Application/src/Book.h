@@ -32,5 +32,5 @@ private:
 };
 // Initialize the static member variable
 int Book::nextId = 1;
-
+Book() = default;   // define default constructor
 #endif //LIBRARY_BOOK_H
