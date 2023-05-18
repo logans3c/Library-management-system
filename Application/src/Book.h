@@ -13,14 +13,12 @@ class Book {
 
 
         std::string getTitle();
-
         int getId();
-
         std::string getAuthor();
-
         std::string getCategory();
-
         bool isBorrowed() const;
+        void markAsBorrowed();
+        void markAsReturned();
 
 private:
         static int nextId;
