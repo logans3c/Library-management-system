@@ -1,8 +1,9 @@
+#ifndef LIBRARY_BOOK_H
+#define LIBRARY_BOOK_H
+
 #include <iostream>
 #include <string>
 #include <utility>
-#ifndef LIBRARY_BOOK_H
-#define LIBRARY_BOOK_H
 
 
 class Book {
@@ -31,6 +32,5 @@ private:
 
 
 };
-// Initialize the static member variable
-int Book::nextId = 1;
+
 #endif //LIBRARY_BOOK_H

@@ -37,3 +37,6 @@ bool Book::isBorrowed() const {
                 book.printInfo();  // Borrowed: No
                 **/
 }
+
+// Initialize the static member variable
+int Book::nextId = 1;
