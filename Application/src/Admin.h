@@ -17,6 +17,7 @@ public:
     /** Const Methods **/
     std::string getUsername(){return username;};
 
+    std::string getPassword();
 private:
     /**  **/
     std::string username;
