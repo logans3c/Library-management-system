@@ -12,6 +12,7 @@ class Admin : public User {
 public:
     /** Constructors **/
     Admin(std::string name,std::string username,std::string password);
+    Admin() ;
 
     /** Const Methods **/
     std::string getUsername(){return username;};

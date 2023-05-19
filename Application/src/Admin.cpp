@@ -13,3 +13,4 @@ Admin::Admin(std::string name, std::string username, std::string password)
     username{std::move(username)},
     password{std::move(password)}
 {}
+Admin::Admin() = default;
