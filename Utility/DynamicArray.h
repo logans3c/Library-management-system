@@ -22,13 +22,13 @@ public:
     int indexOf(T element) const;
     void print() const;
     int getSize() const;
+    T operator[](int i) const ;
+
 
     /* Non-Constant Methods */
     void insert(T element);
     void removeAt(int index);
 
-    /* Operators */
-    T operator[](int i);
 
 private:
 
@@ -113,7 +113,7 @@ void DynamicArray<T>::removeAt(int index) {
 
 /** Operators **/
 template<typename T>
-T DynamicArray<T>::operator[](int i){
+T DynamicArray<T>::operator[](int i) const{
     if( i > size ) {
         throw std::out_of_range("index");
     }
