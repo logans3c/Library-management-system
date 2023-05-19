@@ -23,7 +23,7 @@ DynamicArray<Book> Library::findBooksByCategory(string bookCategory) {
     DynamicArray<Book> searchResult;
     for (int i = 0; i < libraryBooks.getSize() ; ++i) {
         if ( libraryBooks[i].getCategory() == bookCategory){
-            searchResult.insert(libraryBooks[i]);
+            searchResult.insert( libraryBooks[i] );
         }
     }
     return searchResult ;
@@ -93,3 +93,86 @@ DynamicArray<Book> Library::findBooksByAuthor(string query) {
     return searchResult;
 }
 
+
+void Library::createCustomer( string name ) {
+    Customer theCustomer( name ) ;
+    libraryCustomers.insert( theCustomer );
+}
+
+void Library::createAdmin(string name, string username, string password) {
+    Admin theAdmin( name , username , password) ;
+    libraryAdmins.insert(theAdmin);
+}
+
+DynamicArray<Book> Library::getAllLibraryBooks() {
+    return libraryBooks;
+}
+
+DynamicArray<Book> Library::getBorrowedBooks() {
+    DynamicArray<Book> borrowedBooks ;
+    for (int i = 0; i < libraryBooks.getSize(); ++i) {
+        if(libraryBooks[i].isBorrowed()){
+            borrowedBooks.insert(libraryBooks[i]);
+        }
+    }
+    return borrowedBooks ;
+}
+
+DynamicArray<Book> Library::getNonBorrowedBooks() {
+    DynamicArray<Book> nonBorrowedBooks ;
+    for (int i = 0; i < libraryBooks.getSize(); ++i) {
+        if(!libraryBooks[i].isBorrowed()){
+            nonBorrowedBooks.insert(libraryBooks[i]);
+        }
+    }
+    return nonBorrowedBooks ;
+}
+
+DynamicArray<Customer> Library::getAllCustomer() {
+    return libraryCustomers;
+}
+
+DynamicArray<Admin> Library::getAllAdmins() {
+    return libraryAdmins;
+}
+
+Customer* Library::getCustomer( int id) {
+    Customer* theCutomer;
+    for (int i = 0; i < libraryCustomers.getSize(); ++i) {
+        if ( libraryCustomers[i].getId() == id ){
+            *theCutomer = libraryCustomers[i] ;
+            break;
+        }
+    }
+    return theCutomer ;
+}
+
+Admin *Library::getAdmin(int id) {
+    Admin* theAdmin;
+    for (int i = 0; i < libraryAdmins.getSize(); ++i) {
+        if ( libraryAdmins[i].getId() == id ){
+            *theAdmin = libraryAdmins[i] ;
+            break;
+        }
+    }
+    return theAdmin ;
+}
+
+
+void Library::removeCustomerById(int id) {
+    for (int i = 0; i < libraryCustomers.getSize(); ++i) {
+        if( libraryCustomers[i].getId() == id ){
+            libraryCustomers.removeAt(i) ;
+            break;
+        }
+    }
+}
+
+void Library::removeAdminById(int id) {
+    for (int i = 0; i < libraryAdmins.getSize(); ++i) {
+        if( libraryAdmins[i].getId() == id ){
+            libraryAdmins.removeAt(i) ;
+            break;
+        }
+    }
+}
