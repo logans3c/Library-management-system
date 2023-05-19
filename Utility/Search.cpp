@@ -22,19 +22,18 @@ int calculateCommonSubstringLength(std::string& ref, std::string& query) {
 
     for (int Q = 0; Q < QUERY_LENGTH; ++Q) {
         for (int T = 0; T < TITLE_LENGTH; ++T) {
+            if (substringLength >= 2) maxCommonLength+=substringLength;
 
             if (query[Q] == ref[T]){
                 substringLength++;
-                T++;
-                Q++;
+                if (Q + 1 < QUERY_LENGTH);
+                    Q++;
                 continue;
             }
-            else {
-                T++;
-                if (substringLength >= 2) maxCommonLength+=substringLength;
-                substringLength = 0;
-            }
+
+            substringLength = 0;
         }
+
     }
 
     return maxCommonLength;
