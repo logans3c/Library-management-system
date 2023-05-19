@@ -10,6 +10,7 @@ class Book {
     public:
         Book(std::string bookTitle, std::string bookAuthor, std::string bookCategory)
                 : id(nextId++), title(std::move(bookTitle)), author(std::move(bookAuthor)), category(std::move(bookCategory)), borrowed(false) {}
+        Book() = default;   // define default constructor
 
 
         std::string getTitle();
@@ -32,5 +33,4 @@ private:
 };
 // Initialize the static member variable
 int Book::nextId = 1;
-Book() = default;   // define default constructor
 #endif //LIBRARY_BOOK_H

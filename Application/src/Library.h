@@ -16,9 +16,10 @@ class Library {
 public:
     DynamicArray<Book> findBooksByAuthor(string bookAuthorName );
     DynamicArray<Book> findBooksByCategory(string bookCategory );
-    DynamicArray<Book> findBookByTitle( string bookTitle );
+    DynamicArray<Book> findBookByTitle(string& bookTitle );
     void addBook( Book newBook );
-    void removeBook( int bookId);
+    void removeBook( int bookId );
+
 private:
     DynamicArray<Book> libraryBooks ;
 };
