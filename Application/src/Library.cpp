@@ -19,6 +19,10 @@ void Library::addBook(Book newBook) {
     libraryBooks.insert(newBook);
 }
 
+
+
+
+
 DynamicArray<Book> Library::findBooksByCategory(string bookCategory) {
     DynamicArray<Book> searchResult;
     for (int i = 0; i < libraryBooks.getSize() ; ++i) {
@@ -94,15 +98,7 @@ DynamicArray<Book> Library::findBooksByAuthor(string query) {
 }
 
 
-void Library::createCustomer( string name ) {
-    Customer theCustomer( name ) ;
-    libraryCustomers.insert( theCustomer );
-}
 
-void Library::createAdmin(string name, string username, string password) {
-    Admin theAdmin( name , username , password) ;
-    libraryAdmins.insert(theAdmin);
-}
 
 DynamicArray<Book> Library::getAllLibraryBooks() {
     return libraryBooks;
@@ -128,12 +124,20 @@ DynamicArray<Book> Library::getNonBorrowedBooks() {
     return nonBorrowedBooks ;
 }
 
-DynamicArray<Customer> Library::getAllCustomer() {
-    return libraryCustomers;
+
+
+void Library::createCustomer( string name ) {
+    Customer theCustomer( name ) ;
+    libraryCustomers.insert( theCustomer );
 }
 
-DynamicArray<Admin> Library::getAllAdmins() {
-    return libraryAdmins;
+void Library::removeCustomerById(int id) {
+    for (int i = 0; i < libraryCustomers.getSize(); ++i) {
+        if( libraryCustomers[i].getId() == id ){
+            libraryCustomers.removeAt(i) ;
+            break;
+        }
+    }
 }
 
 Customer* Library::getCustomer( int id) {
@@ -147,6 +151,28 @@ Customer* Library::getCustomer( int id) {
     return theCutomer ;
 }
 
+DynamicArray<Customer> Library::getAllCustomer() {
+    return libraryCustomers;
+}
+
+
+
+
+
+void Library::createAdmin(string name, string username, string password) {
+    Admin theAdmin( name , username , password) ;
+    libraryAdmins.insert(theAdmin);
+}
+
+void Library::removeAdminById(int id) {
+    for (int i = 0; i < libraryAdmins.getSize(); ++i) {
+        if( libraryAdmins[i].getId() == id ){
+            libraryAdmins.removeAt(i) ;
+            break;
+        }
+    }
+}
+
 Admin *Library::getAdmin(int id) {
     Admin* theAdmin;
     for (int i = 0; i < libraryAdmins.getSize(); ++i) {
@@ -158,21 +184,6 @@ Admin *Library::getAdmin(int id) {
     return theAdmin ;
 }
 
-
-void Library::removeCustomerById(int id) {
-    for (int i = 0; i < libraryCustomers.getSize(); ++i) {
-        if( libraryCustomers[i].getId() == id ){
-            libraryCustomers.removeAt(i) ;
-            break;
-        }
-    }
-}
-
-void Library::removeAdminById(int id) {
-    for (int i = 0; i < libraryAdmins.getSize(); ++i) {
-        if( libraryAdmins[i].getId() == id ){
-            libraryAdmins.removeAt(i) ;
-            break;
-        }
-    }
+DynamicArray<Admin> Library::getAllAdmins() {
+    return libraryAdmins;
 }
