@@ -14,14 +14,15 @@ using namespace std;
 
 class Library {
 public:
-    DynamicArray<Book> findBooksByAuthor(string bookAuthorName );
-    DynamicArray<Book> findBooksByCategory(string bookCategory );
-    DynamicArray<Book> findBookByTitle(string& bookTitle );
-    void addBook( Book newBook );
+    DynamicArray<Book *> * findBooksByAuthor(string query );
+    DynamicArray<Book *> * findBooksByCategory(string &bookCategory );
+    DynamicArray<Book *> * findBooksByTitle(string& query );
+    void addBook(Book* newBook );
     void removeBook( int bookId );
 
+    const DynamicArray<Book*> * getAllBooks() ;
 private:
-    DynamicArray<Book> libraryBooks ;
+    DynamicArray<Book*> libraryBooks;
 };
 
 

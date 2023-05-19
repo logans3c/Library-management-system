@@ -6,54 +6,54 @@
 #include "Library.h"
 #include "Search.cpp"
 
+
 void Library::removeBook(int bookId) {
     for (int i = 0; i < libraryBooks.getSize() ; ++i) {
-        if ( libraryBooks[i].getId() == bookId ){
+        if ( libraryBooks[i]->getId() == bookId ){
             libraryBooks.removeAt(i) ;
             break;
         }
     }
 }
 
-void Library::addBook(Book newBook) {
+void Library::addBook(Book *newBook) {
     libraryBooks.insert(newBook);
 }
 
-DynamicArray<Book> Library::findBooksByCategory(string bookCategory) {
-    DynamicArray<Book> searchResult;
+DynamicArray<Book *> * Library::findBooksByCategory(string &bookCategory) {
+    auto searchResult = new DynamicArray<Book* > ;
     for (int i = 0; i < libraryBooks.getSize() ; ++i) {
-        if ( libraryBooks[i].getCategory() == bookCategory){
-            searchResult.insert(libraryBooks[i]);
+        if ( libraryBooks[i] -> getCategory() == bookCategory){
+            searchResult -> insert(libraryBooks[i]);
         }
     }
     return searchResult ;
 }
 
-DynamicArray<Book> Library::findBookByTitle(string& query) {
-    DynamicArray<Book> searchResult ;
+DynamicArray<Book *> * Library::findBooksByTitle(string& query) {
+    auto searchResult = new DynamicArray<Book* >  ;
 
     // the map is only used for ranking the search results
-    map<double,DynamicArray<Book> > mp;
+    map<double,DynamicArray<Book*> > mp;
 
     int sz = libraryBooks.getSize();
     for (int i = 0; i < sz; ++i) {
 
         auto book = libraryBooks[i];
-        auto bookTitle = book.getTitle();
+        auto bookTitle = book->getTitle();
 
         int maxCommonLength = calculateCommonSubstringLength( bookTitle, query);
 
         double score = calculateRelevanceScore(query.size(),maxCommonLength);
-        if (score > 50)
+        if (score > 35)
             mp[score * -1].insert(book);
     }
 
     // loop over the map to add the books to the dynamic array
     for (const auto& pair : mp) {
 
-        auto books = pair.second;
-        for (int i = 0; i < books.getSize(); ++i) {
-            searchResult.insert(books[i]);
+        for (int i = 0; i < pair.second.getSize(); ++i) {
+            searchResult->insert(pair.second[i]);
         }
     }
 
@@ -61,35 +61,38 @@ DynamicArray<Book> Library::findBookByTitle(string& query) {
     return searchResult ;
 }
 
-DynamicArray<Book> Library::findBooksByAuthor(string query) {
-    DynamicArray<Book> searchResult ;
+DynamicArray<Book *> * Library::findBooksByAuthor(string query) {
+    auto searchResult = new DynamicArray<Book*>  ;
 
     // the map is only used for ranking the search results
-    map<double,DynamicArray<Book> > mp;
+    map<double,DynamicArray<Book*> > mp;
 
     int sz = libraryBooks.getSize();
     for (int i = 0; i < sz; ++i) {
 
         auto book = libraryBooks[i];
-        auto bookAuthor = book.getAuthor();
+        auto bookAuthor = book->getAuthor();
 
         int maxCommonLength = calculateCommonSubstringLength( bookAuthor, query);
 
         double score = calculateRelevanceScore(query.size(),maxCommonLength);
-        if (score > 50)
+        if (score > 35)
             mp[score * -1].insert(book);
     }
 
     // loop over the map to add the books to the dynamic array
     for (const auto& pair : mp) {
 
-        auto books = pair.second;
-        for (int i = 0; i < books.getSize(); ++i) {
-            searchResult.insert(books[i]);
+        for (int i = 0; i < pair.second.getSize(); ++i) {
+            searchResult->insert(pair.second[i]);
         }
     }
 
 
     return searchResult;
+}
+
+const DynamicArray<Book*>* Library::getAllBooks() {
+    return &libraryBooks;
 }
 
