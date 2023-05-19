@@ -11,11 +11,11 @@ class Customer : public User {
 public:
     /** Constructors **/
     explicit Customer(std::string name);
+    Customer()= default;
 
     /** Const Methods **/
     DynamicArray<Book*> getBorrowedBooks() const;
     int getBorrowedBooksCount() const;
-    
 
     /** Non-Const Methods **/
     void borrowBook(Book* book);
