@@ -32,7 +32,7 @@ public:
 
 private:
 
-    int size;
+    int size = 1;
     T* elements;
     int lastElementIndex = -1;
     void expand();
@@ -46,8 +46,9 @@ DynamicArray<T>::DynamicArray(int size) :size{size} {
 }
 template<typename T>
 DynamicArray<T>::DynamicArray() {
-    size = 20;
+    elements = new T[size] ;
 }
+
 /* Destructor */
 
 template<typename T>
@@ -75,7 +76,7 @@ void DynamicArray<T>::print() const{
 
 template<typename T>
 int DynamicArray<T>::getSize() const {
-    return lastElementIndex;
+    return (lastElementIndex+1);
 }
 
 /* Non-Constant Methods */
