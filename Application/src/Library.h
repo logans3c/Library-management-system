@@ -15,17 +15,16 @@ using namespace std;
 
 class Library {
 public:
-    static bool isPasswordValid( string& password);
-    bool isUsernameUnique( string& username);
+
     bool isValidAdminCredentials( string& username , string& password);
 
     void addBook(Book* newBook );
     void removeBook( int bookId );
 
-
     DynamicArray<Book *> * findBooksByAuthor(string &query );
     DynamicArray<Book *> * findBooksByCategory(string &bookCategory );
     DynamicArray<Book *> * findBooksByTitle(string& query );
+    // Todo: find book by id
 
     DynamicArray<Book *> * getAllLibraryBooks();
     DynamicArray<Book *> * getBorrowedBooks();
@@ -35,7 +34,7 @@ public:
     void createCustomer( string &name );
     void removeCustomerById( int id);
     Customer* getCustomer( int id);
-    DynamicArray<Customer *> * getAllCustomer();
+    DynamicArray<Customer *> * getAllCustomers();
 
     void createAdmin( string& name , string& username , string& password);
     void removeAdminById( int id);
@@ -48,6 +47,8 @@ private:
     DynamicArray<Admin *> libraryAdmins ;
     DynamicArray<Customer *> libraryCustomers ;
     DynamicArray<Book *> libraryBooks;
+    static bool isPasswordValid( string& password);
+    bool isUsernameUnique( string& username);
 };
 
 

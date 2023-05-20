@@ -155,7 +155,7 @@ Customer* Library::getCustomer( int id) {
     throw std::invalid_argument("id");
 }
 
-DynamicArray<Customer *> * Library::getAllCustomer() {
+DynamicArray<Customer *> * Library::getAllCustomers() {
     return &libraryCustomers;
 }
 

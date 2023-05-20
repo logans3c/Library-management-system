@@ -3,5 +3,5 @@ project(Library_Management_System)
 
 set(CMAKE_CXX_STANDARD 14)
 
-add_subdirectory(src)
-add_subdirectory(include)
+add_library(App STATIC LibraryAPI.h LibraryAPI.cpp)
+include_directories(../src ../../Utility)
