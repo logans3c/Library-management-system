@@ -22,9 +22,80 @@ DynamicArray<Customer *> * LibraryAPI::getCustomersData() {
     return lib->getAllCustomers();
 }
 
+DynamicArray<Book *> *LibraryAPI::bookSearchByAuthor(string &query) {
+    return lib->findBooksByAuthor(query);
+}
+
+DynamicArray<Book *> *LibraryAPI::bookSearchByCategory(string &bookCategory) {
+    return lib->findBooksByCategory(bookCategory);
+}
+
+DynamicArray<Book *> *LibraryAPI::bookSearchByTitle(string &query) {
+    return lib->findBooksByTitle(query);
+}
+
+Book *LibraryAPI::bookSearchById(int id) {
+    return lib->findBookById( id);
+}
+
+DynamicArray<Book *> *LibraryAPI::getNonBorrowedBooks() {
+    return lib->getNonBorrowedBooks();
+}
+
+DynamicArray<Book *> *LibraryAPI::getBorrowedBooks() {
+    return lib->getBorrowedBooks();
+}
+
+DynamicArray<Book *> *LibraryAPI::getAllLibraryBooks() {
+    return lib->getAllLibraryBooks();
+}
+
+Admin *LibraryAPI::getAdmin(int id) {
+    return lib->getAdmin(id);
+}
+
+Customer *LibraryAPI::getCustomer(int id) {
+    return lib->getCustomer(id);
+}
+
 /** Non-Const Methods **/
 
 void LibraryAPI::AddBook(string&title,string&author,string&category) {
     lib->addBook(new Book {title,author,category});
 }
 
+void LibraryAPI::createCustomer(string &name) {
+    lib->createCustomer(name);
+}
+
+void LibraryAPI::removeCustomerById(int id) {
+    lib->removeCustomerById(id);
+}
+
+void LibraryAPI::createAdmin(string &name, string &username, string &password) {
+    lib->createAdmin(name,username,password);
+}
+
+void LibraryAPI::removeAdminById(int id) {
+    lib->removeAdminById(id);
+}
+
+void LibraryAPI::removeBook(int bookId) {
+    lib->removeBook(bookId);
+}
+
+void LibraryAPI::borrowBook(int bookId, int customerId) {
+    lib->getCustomer(customerId)->borrowBook(lib->findBookById(bookId));
+}
+
+void LibraryAPI::returnBook(int bookId, int customerId) {
+    lib->getCustomer(customerId)->returnBook(lib->findBookById(bookId));
+}
+
+DynamicArray<Book *> LibraryAPI::getCustomerBorrowedBooks(int customerId) const {
+    return lib->getCustomer(customerId)->getBorrowedBooks();
+}
+
+int LibraryAPI::getCustomerBorrowedBooksCount(int customerId) const {
+    return lib->getCustomer(customerId)->getBorrowedBooksCount();
+}

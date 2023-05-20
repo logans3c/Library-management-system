@@ -143,6 +143,7 @@ void Library::removeCustomerById(int id) {
             break;
         }
     }
+
 }
 
 Customer* Library::getCustomer( int id) {
@@ -163,8 +164,15 @@ DynamicArray<Customer *> * Library::getAllCustomers() {
 
 
 void Library::createAdmin(string& name, string& username, string& password) {
-    libraryAdmins.insert( new Admin {name, username, password});
+    if(!isPasswordValid(password)){
+        throw std::invalid_argument( password);
+    }
+    else if(!isUsernameUnique(username)){
+        throw std::invalid_argument( username);
+    }
+    libraryAdmins.insert(new Admin{name, username, password});
 }
+
 
 void Library::removeAdminById(int id) {
     int size = libraryAdmins.getSize() ;
@@ -215,4 +223,14 @@ bool Library::isPasswordValid(string &password) {
         return false;
     }
     return true;
+}
+
+Book *Library::findBookById(int id) {
+    int size = libraryBooks.getSize() ;
+    for (int i = 0; i < size; ++i) {
+        if( libraryBooks[i]->getId() == id ){
+            return libraryBooks[i] ;
+        }
+    }
+    throw std::invalid_argument("id");
 }

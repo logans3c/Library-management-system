@@ -18,13 +18,32 @@ public:
 
     /** Const Methods **/
     bool adminLogin(string& username, string& password);
-
     DynamicArray<Admin*>* getAdminsData();
     DynamicArray<Customer *> * getCustomersData();
+    DynamicArray<Book *> * bookSearchByAuthor(string &query );
+    DynamicArray<Book *> * bookSearchByCategory(string &bookCategory );
+    DynamicArray<Book *> * bookSearchByTitle(string& query );
+    Book* bookSearchById( int id);
+    DynamicArray<Book *> * getAllLibraryBooks();
+    DynamicArray<Book *> * getBorrowedBooks();
+    DynamicArray<Book *> * getNonBorrowedBooks();
+    Customer* getCustomer( int id);
+    Admin* getAdmin( int id);
+
 
     /** Non-Const Methods **/
     void AddBook(string&title,string&author,string&category);
+    void removeBook( int bookId );
+    void createCustomer( string &name );
+    void removeCustomerById( int id);
+    void createAdmin( string& name , string& username , string& password);
+    void removeAdminById( int id);
+    void borrowBook(int bookId , int customerId );
+    void returnBook(int bookId , int customerId );
 
+
+    DynamicArray<Book*> getCustomerBorrowedBooks( int customerId) const;
+    int getCustomerBorrowedBooksCount( int customerId) const;
 private:
     Library* lib;
 };

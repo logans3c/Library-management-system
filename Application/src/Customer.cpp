@@ -29,6 +29,9 @@ void Customer::borrowBook(Book *book) {
     if (borrowedBooks.getSize() >= Customer::maxBorrowedBooks){
         throw "Maximum number of borrowed books reached!";
     }
+    if(!book->isBorrowed()){
+        throw "This Book is borrowed";
+    }
     book->markAsBorrowed();
     borrowedBooks.insert(book);
 }

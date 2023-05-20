@@ -24,17 +24,19 @@ public:
     DynamicArray<Book *> * findBooksByAuthor(string &query );
     DynamicArray<Book *> * findBooksByCategory(string &bookCategory );
     DynamicArray<Book *> * findBooksByTitle(string& query );
-    // Todo: find book by id
+    Book* findBookById( int id);
 
+    /**/
     DynamicArray<Book *> * getAllLibraryBooks();
     DynamicArray<Book *> * getBorrowedBooks();
     DynamicArray<Book *> * getNonBorrowedBooks();
 
-
+    /**/
     void createCustomer( string &name );
     void removeCustomerById( int id);
     Customer* getCustomer( int id);
     DynamicArray<Customer *> * getAllCustomers();
+
 
     void createAdmin( string& name , string& username , string& password);
     void removeAdminById( int id);

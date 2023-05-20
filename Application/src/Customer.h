@@ -2,10 +2,10 @@
 #define INC_23_05_CUSTOMER_H
 
 #include <iostream>
-
 #include "User.h"
 #include "Book.h"
 #include "DynamicArray.h"
+
 
 class Customer : public User {
 public:
