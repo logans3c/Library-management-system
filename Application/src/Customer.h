@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include "User.h"
+#include "Library.h"
 #include "Book.h"
 #include "DynamicArray.h"
 
@@ -14,12 +15,12 @@ public:
     Customer()= default;
 
     /** Const Methods **/
-    DynamicArray<Book*> getBorrowedBooks() const;
+    DynamicArray<int> getBorrowedBooksIds() const;
     int getBorrowedBooksCount() const;
 
     /** Non-Const Methods **/
-    void borrowBook(Book* book);
-    void returnBook(Book* book);
+    void borrowBook(int& borrowedBookId);
+    void returnBook(int& returnedBookId);
 
 private:
 
@@ -27,7 +28,7 @@ private:
     static int maxBorrowedBooks;
 
     /** Non-Static Members **/
-    DynamicArray<Book*> borrowedBooks;
+    DynamicArray<int> borrowedBooksId;
 };
 
 

@@ -54,7 +54,7 @@ Admin *LibraryAPI::getAdmin(int id) {
     return lib->getAdmin(id);
 }
 
-Customer *LibraryAPI::getCustomer(int id) {
+Customer * LibraryAPI::getCustomer(int id) const {
     return lib->getCustomer(id);
 }
 
@@ -85,17 +85,23 @@ void LibraryAPI::removeBook(int bookId) {
 }
 
 void LibraryAPI::borrowBook(int bookId, int customerId) {
-    lib->getCustomer(customerId)->borrowBook(lib->findBookById(bookId));
+    lib->lendBook( bookId , customerId);
 }
 
 void LibraryAPI::returnBook(int bookId, int customerId) {
-    lib->getCustomer(customerId)->returnBook(lib->findBookById(bookId));
+    lib->returnBook( bookId, customerId);
 }
 
 DynamicArray<Book *> LibraryAPI::getCustomerBorrowedBooks(int customerId) const {
-    return lib->getCustomer(customerId)->getBorrowedBooks();
+    Customer* theCustomer = getCustomer(customerId) ;
+    DynamicArray<int> customerBorrowedBooksIds = theCustomer->getBorrowedBooksIds();
+    return lib->getBooksIds(customerBorrowedBooksIds);
 }
 
 int LibraryAPI::getCustomerBorrowedBooksCount(int customerId) const {
-    return lib->getCustomer(customerId)->getBorrowedBooksCount();
+    Customer* theCustomer ;
+    int borrowedBokksNum ;
+    theCustomer = lib->getCustomer(customerId);
+    borrowedBokksNum = theCustomer->getBorrowedBooksCount();
+    return borrowedBokksNum ;
 }

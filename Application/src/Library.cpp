@@ -6,6 +6,50 @@
 #include "Library.h"
 #include "Search.cpp"
 
+bool Library::isBookBorrowed(int bookId) const {
+    Book* theBook = findBookById(bookId) ;
+    return theBook->isBorrowed() ;
+}
+
+void Library::lendBook(int bookId, int customerId) {
+//  isBorrowed Validation
+    if (!isBookBorrowed( bookId )){
+        throw "Book is not available now" ;
+    }
+
+//  get customer data & get book data
+    Customer* theCustomer = this->getCustomer( customerId ) ;
+    Book* theBook = this->findBookById(bookId);
+
+//  Mark the book as borrowed here
+    theBook->markAsBorrowed();
+
+//  add book id in the array in the customer
+    theCustomer->borrowBook(bookId);
+
+}
+
+
+void Library::returnBook(int bookId, int customerId) const {
+//  get customer data & get book data
+    Customer* theCustomer = this->getCustomer( customerId ) ;
+    Book* theBook = this->findBookById(bookId);
+//    mark the book as returned
+    theBook->markAsReturned() ;
+//    remove the book id in the customer
+    theCustomer->returnBook(bookId);
+}
+
+DynamicArray<Book *> Library::getBooksByIds(const DynamicArray<int>& booksIds) const {
+    DynamicArray<Book *> borrowedBooks ;
+    Book* theBook ;
+    int size = booksIds.getSize() ;
+    for (int i = 0; i < size; ++i) {
+        theBook = findBookById(booksIds[i]);
+        borrowedBooks.insert(theBook);
+    }
+    return borrowedBooks ;
+}
 
 void Library::removeBook(int bookId) {
     int size = libraryBooks.getSize() ;
@@ -146,7 +190,7 @@ void Library::removeCustomerById(int id) {
 
 }
 
-Customer* Library::getCustomer( int id) {
+Customer * Library::getCustomer(int id) const {
     int size = libraryCustomers.getSize() ;
     for (int i = 0; i < size ; ++i) {
         if ( libraryCustomers[i]->getId() == id ){
@@ -225,7 +269,7 @@ bool Library::isPasswordValid(string &password) {
     return true;
 }
 
-Book *Library::findBookById(int id) {
+Book *Library::findBookById(int id)const {
     int size = libraryBooks.getSize() ;
     for (int i = 0; i < size; ++i) {
         if( libraryBooks[i]->getId() == id ){

@@ -15,33 +15,28 @@ Customer::Customer(std::string name) : User(std::move(name)) {
 
 /** Const Methods **/
 
-DynamicArray<Book*> Customer::getBorrowedBooks() const {
-    return borrowedBooks;
+DynamicArray<int> Customer::getBorrowedBooksIds() const {
+    return borrowedBooksId;
 }
 
 int Customer::getBorrowedBooksCount() const {
-    return (int) borrowedBooks.getSize();
+    return (int) borrowedBooksId.getSize();
 }
 
 /** Non-Const Methods **/
 
-void Customer::borrowBook(Book *book) {
-    if (borrowedBooks.getSize() >= Customer::maxBorrowedBooks){
+void Customer::borrowBook(int &BookId) {
+    if (borrowedBooksId.getSize() >= Customer::maxBorrowedBooks){
         throw "Maximum number of borrowed books reached!";
     }
-    if(!book->isBorrowed()){
-        throw "This Book is borrowed";
-    }
-    book->markAsBorrowed();
-    borrowedBooks.insert(book);
+    borrowedBooksId.insert(BookId);
 }
 
-void Customer::returnBook(Book *returnedBook) {
-    int size = borrowedBooks.getSize();
-    for (int i = 0; i < size; ++i) {
-        if (borrowedBooks[i] == returnedBook) {
-            (borrowedBooks[i])->markAsReturned();
-            borrowedBooks.removeAt(i);
+void Customer::returnBook(int &returnedBookId) {
+    int size = borrowedBooksId.getSize();
+    for (int i = 0; i < size ; ++i) {
+        if( borrowedBooksId[i] == returnedBookId ){
+            borrowedBooksId.removeAt(i);
             break;
         }
     }
