@@ -9,7 +9,7 @@
 #include "customer_infrastructure.h"
 
 void saveCustomer(const DynamicArray<Customer*>& libraryCustomers, const std::string& filename) {
-    std::ofstream writeFile("customersData.csv", std::ios::trunc);
+    std::ofstream writeFile(filename, std::ios::trunc);
     if (!writeFile) {
         std::cerr << "Error opening file: " << filename << std::endl;
         return;
@@ -22,10 +22,14 @@ void saveCustomer(const DynamicArray<Customer*>& libraryCustomers, const std::st
         writeFile << customer->getId() << ","
                   << customer->getName() << ",";
 
-        DynamicArray<int> borrowedBooks = customer->getBorrowedBooksIds();
-        for (int j = 0; j < borrowedBooks.getSize(); ++j) {
-            Book *book = reinterpret_cast<Book *>(borrowedBooks[j]);
-            writeFile << book->getId() << ",";
+        DynamicArray<int> borrowedBooksIds = customer->getBorrowedBooksIds();
+
+        // Write all borrowed book IDs separated by a comma
+        for (int j = 0; j < borrowedBooksIds.getSize(); ++j) {
+            if (j > 0) {
+                writeFile << ",";  // Add a comma separator
+            }
+            writeFile << borrowedBooksIds[j];  // Write borrowed book ID
         }
 
         writeFile << "\n";
@@ -33,6 +37,8 @@ void saveCustomer(const DynamicArray<Customer*>& libraryCustomers, const std::st
 
     writeFile.close();
 }
+
+
 
 
 DynamicArray<Customer*> readCustomers(const std::string& filename) {
@@ -55,11 +61,35 @@ DynamicArray<Customer*> readCustomers(const std::string& filename) {
         std::getline(iss, field, ',');
         int id = std::stoi(field);
 
-        std::getline(iss, field);
+        std::getline(iss, field, ',');
         std::string name = field;
 
-        Customer* customer = new Customer(name);
+        std::getline(iss, field);
+        std::istringstream issBooks(field);
+        std::string bookId;
+        DynamicArray<int> borrowedBooksIds;
+
+        while (std::getline(issBooks, bookId, ',')) {
+            borrowedBooksIds.insert(std::stoi(bookId));
+        }
+
+        // Create a Customer object using the constructor
+        Customer* customer = new Customer(name, id);
+        customer->getBorrowedBooksIds() = borrowedBooksIds;
         customers.insert(customer);
+
+        // Print customer information
+        std::cout << "Customer ID: " << customer->getId() << std::endl;
+        std::cout << "Name: " << customer->getName() << std::endl;
+        std::cout << "Borrowed Books IDs: ";
+        for (int i = 0; i < borrowedBooksIds.getSize(); ++i) {
+            std::cout << borrowedBooksIds[i];
+            if (i < borrowedBooksIds.getSize() - 1) {
+                std::cout << ", ";
+            }
+        }
+        std::cout << std::endl;
+        std::cout << "---------------------" << std::endl;
     }
 
     readFile.close();

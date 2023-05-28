@@ -4,7 +4,7 @@
 
 #ifndef LIBRARY_MANAGEMENT_SYSTEM_BOOK_INFRASTRUCTURE_H
 #define LIBRARY_MANAGEMENT_SYSTEM_BOOK_INFRASTRUCTURE_H
-#include "../Utility/DynamicArray.h"
+#include "../../Utility/DynamicArray.h"
 #include "../Application/src/Book.h"
 
 void saveBooks(DynamicArray<Book*>& books, const std::string& filename);

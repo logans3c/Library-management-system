@@ -222,14 +222,19 @@ void Library::createAdmin(string& name, string& username, string& password) {
 
 
 void Library::removeAdminById(int id) {
-    int size = libraryAdmins.getSize() ;
+    int size = libraryAdmins.getSize();
+
     for (int i = 0; i < size; ++i) {
-        if( libraryAdmins[i]->getId() == id ){
-            libraryAdmins.removeAt(i) ;
-            break;
+        if (libraryAdmins[i]->getId() == id) {
+            libraryAdmins.removeAt(i);
+            std::cout << "Admin with ID " << id << " removed successfully!" << std::endl;
+            return; // Exit the function after removing the admin
         }
     }
+
+    throw std::runtime_error("Admin with ID " + std::to_string(id) + " not found!");
 }
+
 
 Admin *Library::getAdmin(int id) {
     int size = libraryAdmins.getSize() ;

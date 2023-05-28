@@ -69,8 +69,8 @@ private:
     DynamicArray<Admin *> libraryAdmins ;
     DynamicArray<Customer *> libraryCustomers ;
     DynamicArray<Book *> libraryBooks;
-    string booksFilePath = R"(..\..\..\Infrastructure\src\customersData.csv)" ;
-    string CustomersFilePath = R"(..\..\..\Infrastructure\src\booksData.csv)" ;
+    string booksFilePath = R"(..\..\..\Infrastructure\src\booksData.csv)" ;
+    string CustomersFilePath = R"(..\..\..\Infrastructure\src\customersData.csv)" ;
     string AdminsFilePath = R"(..\..\..\Infrastructure\src\adminsData.csv)" ;
     static bool isPasswordValid( string& password);
     bool isUsernameUnique( string& username);

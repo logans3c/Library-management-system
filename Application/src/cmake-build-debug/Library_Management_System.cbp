@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6"/>
+	<Project>
+		<Option title="Library_Management_System"/>
+		<Option makefile_is_custom="1"/>
+		<Option compiler="gcc"/>
+		<Option virtualFolders="CMake Files\;"/>
+		<Build>
+			<Target title="all">
+				<Option working_dir="M:/Library-management-system/Application/src/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="C:/PROGRA~1/JETBRA~1/CLION2~1.2/bin/mingw/bin/mingw32-make.exe -f &quot;M:/Library-management-system/Application/src/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="C:/PROGRA~1/JETBRA~1/CLION2~1.2/bin/mingw/bin/mingw32-make.exe -f &quot;M:/Library-management-system/Application/src/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="C:/PROGRA~1/JETBRA~1/CLION2~1.2/bin/mingw/bin/mingw32-make.exe -f &quot;M:/Library-management-system/Application/src/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="C:/PROGRA~1/JETBRA~1/CLION2~1.2/bin/mingw/bin/mingw32-make.exe -f &quot;M:/Library-management-system/Application/src/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="Application">
+				<Option output="M:/Library-management-system/Application/src/cmake-build-debug/Application.exe" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="M:/Library-management-system/Application/src/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="M:/Library-management-system/Application/src/."/>
+					<Add directory="M:/Library-management-system/Application/src/../../Utility"/>
+					<Add directory="M:/Library-management-system/Application/src/../../Infrastructure/src"/>
+					<Add directory="C:/Program Files/JetBrains/CLion 2022.3.2/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++"/>
+					<Add directory="C:/Program Files/JetBrains/CLion 2022.3.2/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/x86_64-w64-mingw32"/>
+					<Add directory="C:/Program Files/JetBrains/CLion 2022.3.2/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/backward"/>
+					<Add directory="C:/Program Files/JetBrains/CLion 2022.3.2/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/11.2.0/include"/>
+					<Add directory="C:/Program Files/JetBrains/CLion 2022.3.2/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/11.2.0/../../../../include"/>
+					<Add directory="C:/Program Files/JetBrains/CLion 2022.3.2/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/11.2.0/include-fixed"/>
+					<Add directory="C:/Program Files/JetBrains/CLion 2022.3.2/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/11.2.0/../../../../x86_64-w64-mingw32/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="C:/PROGRA~1/JETBRA~1/CLION2~1.2/bin/mingw/bin/mingw32-make.exe -f &quot;M:/Library-management-system/Application/src/cmake-build-debug/Makefile&quot;  VERBOSE=1 Application"/>
+					<CompileFile command="C:/PROGRA~1/JETBRA~1/CLION2~1.2/bin/mingw/bin/mingw32-make.exe -f &quot;M:/Library-management-system/Application/src/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="C:/PROGRA~1/JETBRA~1/CLION2~1.2/bin/mingw/bin/mingw32-make.exe -f &quot;M:/Library-management-system/Application/src/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="C:/PROGRA~1/JETBRA~1/CLION2~1.2/bin/mingw/bin/mingw32-make.exe -f &quot;M:/Library-management-system/Application/src/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="Application/fast">
+				<Option output="M:/Library-management-system/Application/src/cmake-build-debug/Application.exe" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="M:/Library-management-system/Application/src/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="M:/Library-management-system/Application/src/."/>
+					<Add directory="M:/Library-management-system/Application/src/../../Utility"/>
+					<Add directory="M:/Library-management-system/Application/src/../../Infrastructure/src"/>
+					<Add directory="C:/Program Files/JetBrains/CLion 2022.3.2/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++"/>
+					<Add directory="C:/Program Files/JetBrains/CLion 2022.3.2/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/x86_64-w64-mingw32"/>
+					<Add directory="C:/Program Files/JetBrains/CLion 2022.3.2/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/backward"/>
+					<Add directory="C:/Program Files/JetBrains/CLion 2022.3.2/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/11.2.0/include"/>
+					<Add directory="C:/Program Files/JetBrains/CLion 2022.3.2/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/11.2.0/../../../../include"/>
+					<Add directory="C:/Program Files/JetBrains/CLion 2022.3.2/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/11.2.0/include-fixed"/>
+					<Add directory="C:/Program Files/JetBrains/CLion 2022.3.2/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/11.2.0/../../../../x86_64-w64-mingw32/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="C:/PROGRA~1/JETBRA~1/CLION2~1.2/bin/mingw/bin/mingw32-make.exe -f &quot;M:/Library-management-system/Application/src/cmake-build-debug/Makefile&quot;  VERBOSE=1 Application/fast"/>
+					<CompileFile command="C:/PROGRA~1/JETBRA~1/CLION2~1.2/bin/mingw/bin/mingw32-make.exe -f &quot;M:/Library-management-system/Application/src/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="C:/PROGRA~1/JETBRA~1/CLION2~1.2/bin/mingw/bin/mingw32-make.exe -f &quot;M:/Library-management-system/Application/src/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="C:/PROGRA~1/JETBRA~1/CLION2~1.2/bin/mingw/bin/mingw32-make.exe -f &quot;M:/Library-management-system/Application/src/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="edit_cache">
+				<Option working_dir="M:/Library-management-system/Application/src/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="C:/PROGRA~1/JETBRA~1/CLION2~1.2/bin/mingw/bin/mingw32-make.exe -f &quot;M:/Library-management-system/Application/src/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
+					<CompileFile command="C:/PROGRA~1/JETBRA~1/CLION2~1.2/bin/mingw/bin/mingw32-make.exe -f &quot;M:/Library-management-system/Application/src/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="C:/PROGRA~1/JETBRA~1/CLION2~1.2/bin/mingw/bin/mingw32-make.exe -f &quot;M:/Library-management-system/Application/src/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="C:/PROGRA~1/JETBRA~1/CLION2~1.2/bin/mingw/bin/mingw32-make.exe -f &quot;M:/Library-management-system/Application/src/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="rebuild_cache">
+				<Option working_dir="M:/Library-management-system/Application/src/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="C:/PROGRA~1/JETBRA~1/CLION2~1.2/bin/mingw/bin/mingw32-make.exe -f &quot;M:/Library-management-system/Application/src/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
+					<CompileFile command="C:/PROGRA~1/JETBRA~1/CLION2~1.2/bin/mingw/bin/mingw32-make.exe -f &quot;M:/Library-management-system/Application/src/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="C:/PROGRA~1/JETBRA~1/CLION2~1.2/bin/mingw/bin/mingw32-make.exe -f &quot;M:/Library-management-system/Application/src/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="C:/PROGRA~1/JETBRA~1/CLION2~1.2/bin/mingw/bin/mingw32-make.exe -f &quot;M:/Library-management-system/Application/src/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+		</Build>
+		<Unit filename="M:/Library-management-system/Application/include/LibraryAPI.cpp">
+			<Option target="Application"/>
+		</Unit>
+		<Unit filename="M:/Library-management-system/Application/include/LibraryAPI.h">
+			<Option target="Application"/>
+		</Unit>
+		<Unit filename="M:/Library-management-system/Application/src/Admin.cpp">
+			<Option target="Application"/>
+		</Unit>
+		<Unit filename="M:/Library-management-system/Application/src/Admin.h">
+			<Option target="Application"/>
+		</Unit>
+		<Unit filename="M:/Library-management-system/Application/src/Book.cpp">
+			<Option target="Application"/>
+		</Unit>
+		<Unit filename="M:/Library-management-system/Application/src/Book.h">
+			<Option target="Application"/>
+		</Unit>
+		<Unit filename="M:/Library-management-system/Application/src/Customer.cpp">
+			<Option target="Application"/>
+		</Unit>
+		<Unit filename="M:/Library-management-system/Application/src/Customer.h">
+			<Option target="Application"/>
+		</Unit>
+		<Unit filename="M:/Library-management-system/Application/src/Library.cpp">
+			<Option target="Application"/>
+		</Unit>
+		<Unit filename="M:/Library-management-system/Application/src/Library.h">
+			<Option target="Application"/>
+		</Unit>
+		<Unit filename="M:/Library-management-system/Application/src/User.cpp">
+			<Option target="Application"/>
+		</Unit>
+		<Unit filename="M:/Library-management-system/Application/src/User.h">
+			<Option target="Application"/>
+		</Unit>
+		<Unit filename="M:/Library-management-system/Application/src/main.cpp">
+			<Option target="Application"/>
+		</Unit>
+		<Unit filename="M:/Library-management-system/Infrastructure/src/Admin_infrastructure.cpp">
+			<Option target="Application"/>
+		</Unit>
+		<Unit filename="M:/Library-management-system/Infrastructure/src/Admin_infrastructure.h">
+			<Option target="Application"/>
+		</Unit>
+		<Unit filename="M:/Library-management-system/Infrastructure/src/book_infrastructure.cpp">
+			<Option target="Application"/>
+		</Unit>
+		<Unit filename="M:/Library-management-system/Infrastructure/src/book_infrastructure.h">
+			<Option target="Application"/>
+		</Unit>
+		<Unit filename="M:/Library-management-system/Infrastructure/src/customer_infrastructure.cpp">
+			<Option target="Application"/>
+		</Unit>
+		<Unit filename="M:/Library-management-system/Infrastructure/src/customer_infrastructure.h">
+			<Option target="Application"/>
+		</Unit>
+		<Unit filename="M:/Library-management-system/Application/src/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\"/>
+		</Unit>
+	</Project>
+</CodeBlocks_project_file>

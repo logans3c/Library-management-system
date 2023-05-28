@@ -65,6 +65,8 @@
 #include "Customer.h"
 #include "../include/LibraryAPI.h"
 #include <string>
+#include "Book.h"
+
 /*int main() {
     // Step 1: Create an instance of the LibraryAPI class
     LibraryAPI libraryApi;
@@ -119,10 +121,11 @@ int main() {
     LibraryAPI library;
 
     //====================================BOOKS===============================================
-    std::string bookTitle1 = "To Kill a Mockingbird";
+    std::string bookTitle1 = "Tooo Kill a Mockingbird";
     std::string bookAuthor1 = "Harper Lee";
     std::string bookCategory1 = "Fiction";
     library.AddBook(bookTitle1, bookAuthor1, bookCategory1);
+
 
     std::string bookTitle2 = "1984";
     std::string bookAuthor2 = "George Orwell";
@@ -150,6 +153,9 @@ int main() {
     library.AddBook(bookTitle6, bookAuthor6, bookCategory6);
 
     std::cout << " Books added to the library." << std::endl;
+    //library.readBooksData();
+
+
 
     DynamicArray<Book*>* allBooks = library.getAllLibraryBooks();
     std::cout << "All Library Books:" << std::endl;
@@ -157,6 +163,16 @@ int main() {
         Book* book = (*allBooks)[i];
         std::cout << "ID: " << book->getId() << ", Title: " << book->getTitle() << ", Author: " << book->getAuthor()
                   << ", Category: " << book->getCategory() << std::endl;
+    }
+    std::string searchTitle = "8888888888888";
+    DynamicArray<Book*>* searchResult = library.bookSearchByTitle(searchTitle);
+    int size = searchResult->getSize();
+    for (int i = 0; i < size; ++i) {
+        Book* book = (*searchResult)[i];
+        std::cout << "Title: " << book->getTitle() << std::endl;
+        std::cout << "Author: " << book->getAuthor() << std::endl;
+        std::cout << "Category: " << book->getCategory() << std::endl;
+        std::cout << "------------------------" << std::endl;
     }
 
     //====================================ADMIN===========================================
@@ -166,12 +182,12 @@ int main() {
     std::string adminPassword0 = "12345678";
     library.createAdmin(adminName0, adminUsername0, adminPassword0);
     std::cout << "Admin created." << std::endl;
-    //ADD ADMIN_2
-//    std::string adminName1 = "Admin User";
-//    std::string adminUsername1 = " admin 1";
-//    std::string adminPassword1 = "adminpass1";
-//    library.createAdmin(adminName1, adminUsername1, adminPassword1);
-//    std::cout << "Admin created." << std::endl;
+    //ADD ADMIN_2;
+    std::string adminName1 = "Admin User";
+    std::string adminUsername1 = " admin 1";
+    std::string adminPassword1 = "adminpass1";
+    library.createAdmin(adminName1, adminUsername1, adminPassword1);
+    std::cout << "Admin created." << std::endl;
 
 
     //LOGIN WITH ADMIN
@@ -190,19 +206,18 @@ int main() {
 //        Admin* admin = (*admins)[i];
 //        std::cout << "ID: " << admin->getId() << ", Name: " << admin->getName() << std::endl;
 //    }
-    library.saveData();
-    library.readAdminsData();
-    DynamicArray<Admin*>* adminsData = library.getAdminsData();
-
-//     Iterate over the admins data and print the admin information
-    for (int i = 0; i < adminsData->getSize(); ++i) {
-        Admin* admin = (*adminsData)[i];
-        std::cout << "Admin ID: " << admin->getId() << std::endl;
-        std::cout << "Name: " << admin->getName() << std::endl;
-        std::cout << "Username: " << admin->getUsername() << std::endl;
-        std::cout << "Password: " << admin->getPassword() << std::endl;
-        std::cout << std::endl;
-    }
+//    library.readAdminsData();
+//    DynamicArray<Admin*>* adminsData = library.getAdminsData();
+//
+////     Iterate over the admins data and print the admin information
+//    for (int i = 0; i < adminsData->getSize(); ++i) {
+//        Admin* admin = (*adminsData)[i];
+//        std::cout << "Admin ID: " << admin->getId() << std::endl;
+//        std::cout << "Name: " << admin->getName() << std::endl;
+//        std::cout << "Username: " << admin->getUsername() << std::endl;
+//        std::cout << "Password: " << admin->getPassword() << std::endl;
+//        std::cout << std::endl;
+//    }
 
 
     //==================================================================================
@@ -211,16 +226,19 @@ int main() {
     std::string customerName0 = "John Doe";
     library.createCustomer(customerName0);
     std::cout << "Customer created." << std::endl;
-    int customerId0 = 100003;
+    std::string customerName2 = "abdo";
+    library.createCustomer(customerName0);
+    std::cout << "Customer created." << std::endl;
+    int customerId0 = 100004;
     int bookId0 = 1;
-    int customerId1 = 100004;
+    int customerId1 = 100005;
     int bookId1 = 2;
 
     std::string customerName1 = "Mohammed Ashraf";
     library.createCustomer(customerName1);
     std::cout << "Customer created." << std::endl;
     library.borrowBook(bookId0, customerId0);
-    library.borrowBook(bookId1, customerId1);
+    library.borrowBook(bookId1, customerId0);
 
     //GET CUSTOMER DATA
     DynamicArray<Customer*>* customers = library.getCustomersData();
@@ -230,10 +248,25 @@ int main() {
         std::cout << "ID: " << customer->getId() << ", Name: " << customer->getName() << ", Borrowed books count : " << customer ->getBorrowedBooksCount() << std::endl;
     }
 
+//    library.saveData();
+//    library.readCustomersData();
+//    library.saveData();
 
 
+//    library.readBooksData();
+    DynamicArray<Book*>* nonBorrowedBooks = library.getNonBorrowedBooks();
+    std::cout << "Non-borrowed books:" << std::endl;
+    for (int i = 0; i < nonBorrowedBooks->getSize(); i++) {
+        Book* book = (*nonBorrowedBooks)[i];
+        std::cout << "ID: " << book->getId() << ", Title: " << book->getTitle() << std::endl;
+    }
+//    int bookIdToRemove = 1;
+//    library.removeBook(bookIdToRemove);
+//    std::cout << "Book removed from the library." << std::endl;
+    int adminIdToRemove = 100002;
+    library.removeAdminById(adminIdToRemove);
+    std::cout << "Admin removed." << std::endl;
 
-
-
+    library.saveData();
     return 0;
 }

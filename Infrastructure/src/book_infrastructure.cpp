@@ -27,6 +27,7 @@ void saveBooks( DynamicArray<Book*>& books,const std::string& filename) {
         std::ofstream writeFile(filename, std::ios::app);
 
         if (writeFile) {
+            writeFile << "id,title,author,category,borrowed" << std::endl;
             for (int i = 0; i < books.getSize(); ++i) {
                 Book* book = books[i];
                 writeFile << book->getId() << ","
