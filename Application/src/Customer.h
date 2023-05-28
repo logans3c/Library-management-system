@@ -3,7 +3,6 @@
 
 #include <iostream>
 #include "User.h"
-#include "Library.h"
 #include "Book.h"
 #include "DynamicArray.h"
 

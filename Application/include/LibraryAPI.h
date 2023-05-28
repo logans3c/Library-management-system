@@ -19,6 +19,16 @@ public:
     /** Const Methods **/
     bool adminLogin(string& username, string& password);
 
+    /*saving data in files*/
+    void saveData() ;
+
+
+    /*reading data from files*/
+    void readBooksData();
+    void readCustomersData();
+    void readAdminsData();
+
+
     /*Search*/
     DynamicArray<Book *> * bookSearchByAuthor(string &query );
     DynamicArray<Book *> * bookSearchByCategory(string &bookCategory );

@@ -278,3 +278,28 @@ Book *Library::findBookById(int id)const {
     }
     throw std::invalid_argument("id");
 }
+
+void Library::readCustomers() {
+    DynamicArray<Customer*> customers ;
+    customers = ::readCustomers(CustomersFilePath) ;
+    libraryCustomers = customers ;
+}
+
+void Library::readAdmins() {
+    DynamicArray<Admin*> admins ;
+    admins = ::readAdmins(AdminsFilePath) ;
+    libraryAdmins = admins ;
+}
+
+void Library::readBooks() {
+    DynamicArray<Book*> books ;
+    books = ::readBooks(booksFilePath) ;
+    libraryBooks = books ;
+}
+
+void Library::saveData() {
+    ::saveAdminsToCSV( libraryAdmins , AdminsFilePath ) ;
+    ::saveBooks( libraryBooks  , booksFilePath ) ;
+    ::saveCustomer( libraryCustomers , CustomersFilePath ) ;
+}
+
