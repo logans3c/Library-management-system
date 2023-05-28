@@ -9,7 +9,7 @@
 
 
 template <typename T>
-class DynamicArray {
+class DynamicArray : public std::error_code {
 public:
     /* Constructors */
     explicit DynamicArray(int size);

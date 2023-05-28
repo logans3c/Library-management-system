@@ -2,10 +2,14 @@
 // Created by Mohammed Ashraf(LOGAN0X) on 5/22/2023.
 //
 #include <fstream>
-#include "Application/src/Customer.h"
+#include <sstream>
+#include "../Application/src/Customer.h"
+#include "../Utility/DynamicArray.h"
+#include "../Application/src/Library.h"
+#include "customer_infrastructure.h"
 
 void saveCustomer(const DynamicArray<Customer*>& libraryCustomers, const std::string& filename) {
-    std::ofstream writeFile(filename, std::ios::trunc);
+    std::ofstream writeFile("customersData.csv", std::ios::trunc);
     if (!writeFile) {
         std::cerr << "Error opening file: " << filename << std::endl;
         return;
@@ -13,12 +17,14 @@ void saveCustomer(const DynamicArray<Customer*>& libraryCustomers, const std::st
 
     writeFile << "ID,Name,BorrowedBooks\n";
 
-    for (const Customer* customer : libraryCustomers) {
+    for (int i = 0; i < libraryCustomers.getSize(); ++i) {
+        const Customer* customer = libraryCustomers[i];
         writeFile << customer->getId() << ","
                   << customer->getName() << ",";
 
-        const DynamicArray<Book*>& borrowedBooks = customer->getBorrowedBooks();
-        for (const Book* book : borrowedBooks) {
+        DynamicArray<int> borrowedBooks = customer->getBorrowedBooksIds();
+        for (int j = 0; j < borrowedBooks.getSize(); ++j) {
+            Book *book = reinterpret_cast<Book *>(borrowedBooks[j]);
             writeFile << book->getId() << ",";
         }
 
@@ -27,6 +33,7 @@ void saveCustomer(const DynamicArray<Customer*>& libraryCustomers, const std::st
 
     writeFile.close();
 }
+
 
 DynamicArray<Customer*> readCustomers(const std::string& filename) {
     DynamicArray<Customer*> customers;
@@ -51,11 +58,12 @@ DynamicArray<Customer*> readCustomers(const std::string& filename) {
         std::getline(iss, field);
         std::string name = field;
 
-        Customer* customer = new Customer(id, name);
-        customers.push_back(customer);
+        Customer* customer = new Customer(name);
+        customers.insert(customer);
     }
 
     readFile.close();
 
     return customers;
 }
+

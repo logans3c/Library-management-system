@@ -23,7 +23,7 @@ The project also includes a bonus requirement to save data to files (`admins.txt
 1. Clone the repository to your local machine:
 
 ```
-git clone https://github.com/your-username/library-management-system.git
+git clone https://github.com/logans3c/Library-management-system
 ```
 
 2. Compile and run the program using a C++ compiler:
@@ -48,10 +48,9 @@ g++ main.cpp Library.cpp Book.cpp User.cpp Customer.cpp Admin.cpp -o library
 
 ## Team Members
 
-- John Smith (ID: 123456789)
-- Jane Doe (ID: 987654321)
-- Michael Johnson (ID: 543216789)
-- Emily Wilson (ID: 987651234)
+- Mahmoud Ashraf (ID: 22-101201)
+- Mohammed Ashraf (ID: 22-101206)
+- AbdElrahmen Sayed (ID: 22-10207)
 
 ## UML Diagram
 

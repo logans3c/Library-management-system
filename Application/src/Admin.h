@@ -12,6 +12,8 @@ class Admin : public User {
 public:
     /** Constructors **/
     Admin(std::string name,std::string username,std::string password);
+    Admin(std::string name, std::string username, std::string password,int id);
+
     Admin() ;
 
     /** Const Methods **/

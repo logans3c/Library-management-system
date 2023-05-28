@@ -13,8 +13,10 @@ User::User(std::string name) {
     this -> name = std::move(name);
     this -> id = User::getNewId();
 }
-
-
+User::User(std::string name,int id) {
+    this -> name = std::move(name);
+    this -> id = id;
+}
 /** Constant Methods **/
 
 const std::string& User::getName() const { return name;}
