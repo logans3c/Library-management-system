@@ -11,6 +11,8 @@ class User {
 public:
     /** Constructors **/
     explicit User(std::string name);
+    User(std::string name, int id);
+
     User(){};
 
     /** Const Methods **/

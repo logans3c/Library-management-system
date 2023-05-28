@@ -2,10 +2,14 @@
 // Created by Mohammed Ashraf(LOGAN0X) on 5/22/2023.
 //
 #include <fstream>
-#include "Application/src/Book.h"
+#include <sstream>
+#include "../Application/src/Book.h"
+#include "../Utility/DynamicArray.h"
+#include "../Application/src/Library.h"
 
-void saveBooks(const std::string& filename, DynamicArray<Book*>& books) {
-    std::ofstream file(filename);
+
+void saveBooks( DynamicArray<Book*>& books,const std::string& filename) {
+    std::ofstream file("booksData.csv");
 
     if (file) {
         // Delete the content of the CSV file
@@ -23,6 +27,7 @@ void saveBooks(const std::string& filename, DynamicArray<Book*>& books) {
         std::ofstream writeFile(filename, std::ios::app);
 
         if (writeFile) {
+            writeFile << "id,title,author,category,borrowed" << std::endl;
             for (int i = 0; i < books.getSize(); ++i) {
                 Book* book = books[i];
                 writeFile << book->getId() << ","
@@ -73,7 +78,8 @@ DynamicArray<Book*> readBooks(const std::string& filename) {
         std::getline(iss, field);
         bool borrowed = (field == "1");
 
-        Book* book = new Book(id, title, author, category, borrowed);
+        // Create a Book object using the constructor
+        Book* book = new Book(title, author, category);
         books.insert(book);
     }
 

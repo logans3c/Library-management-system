@@ -5,9 +5,9 @@
 // Created by Abdelrahman on 5/18/2023.
 //
 
-#include "A:\Library-management-system\Infrastructure\src\book_infrastructure.cpp"
-#include "A:\Library-management-system\Infrastructure\src\customer_infrastructure.cpp"
-#include "A:\Library-management-system\Infrastructure\src\Admin_infrastructure.cpp"
+#include "..\Infrastructure\src\book_infrastructure.h"
+#include "..\Infrastructure\src\customer_infrastructure.h"
+#include "..\Infrastructure\src\Admin_infrastructure.h"
 #include "DynamicArray.h"
 #include "Book.h"
 #include "Customer.h"
@@ -20,13 +20,17 @@ using namespace std;
 class Library {
 public:
 
-    /*Saving data in files*/
+    Library();
+
+    explicit Library(const string &adminsFilePath);
+
+/*Saving data in files*/
     void saveData();
 
     /*reading data from files*/
-    void readCustomers();
-    void readAdmins();
-    void readBooks();
+    void readCustomersData();
+    void readAdminsData();
+    void readBooksData();
 
 
     bool isValidAdminCredentials( string& username , string& password);
@@ -48,7 +52,7 @@ public:
     DynamicArray<Book *> * getNonBorrowedBooks();
 
     /**/
-    void createCustomer( string &name );
+    void createCustomer(basic_string<char> name );
     void removeCustomerById( int id);
     Customer * getCustomer(int id) const;
     DynamicArray<Customer *> * getAllCustomers();
@@ -65,9 +69,9 @@ private:
     DynamicArray<Admin *> libraryAdmins ;
     DynamicArray<Customer *> libraryCustomers ;
     DynamicArray<Book *> libraryBooks;
-    string booksFilePath = "" ;
-    string AdminsFilePath = "" ;
-    string CustomersFilePath = "" ;
+    string booksFilePath = R"(..\..\..\Infrastructure\src\booksData.csv)" ;
+    string CustomersFilePath = R"(..\..\..\Infrastructure\src\customersData.csv)" ;
+    string AdminsFilePath = R"(..\..\..\Infrastructure\src\adminsData.csv)" ;
     static bool isPasswordValid( string& password);
     bool isUsernameUnique( string& username);
     bool isBookBorrowed(int bookId ) const;

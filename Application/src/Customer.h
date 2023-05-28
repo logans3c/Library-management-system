@@ -11,6 +11,7 @@ class Customer : public User {
 public:
     /** Constructors **/
     explicit Customer(std::string name);
+    Customer(std::string name,int id) ;
     Customer()= default;
 
     /** Const Methods **/

@@ -13,7 +13,7 @@ bool Library::isBookBorrowed(int bookId) const {
 
 void Library::lendBook(int bookId, int customerId) {
 //  isBorrowed Validation
-    if (!isBookBorrowed( bookId )){
+    if (isBookBorrowed( bookId )){
         throw "Book is not available now" ;
     }
 
@@ -21,11 +21,12 @@ void Library::lendBook(int bookId, int customerId) {
     Customer* theCustomer = this->getCustomer( customerId ) ;
     Book* theBook = this->findBookById(bookId);
 
+//  add book id in the array in the customer
+    theCustomer->borrowBook(bookId);
+
 //  Mark the book as borrowed here
     theBook->markAsBorrowed();
 
-//  add book id in the array in the customer
-    theCustomer->borrowBook(bookId);
 
 }
 
@@ -175,7 +176,7 @@ DynamicArray<Book *> * Library::getNonBorrowedBooks() {
 
 
 
-void Library::createCustomer( string &name ) {
+void Library::createCustomer(basic_string<char> name ) {
     libraryCustomers.insert( new Customer {name});
 }
 
@@ -192,7 +193,9 @@ void Library::removeCustomerById(int id) {
 
 Customer * Library::getCustomer(int id) const {
     int size = libraryCustomers.getSize() ;
+
     for (int i = 0; i < size ; ++i) {
+        int idd = libraryCustomers[i]->getId();
         if ( libraryCustomers[i]->getId() == id ){
             return libraryCustomers[i] ;
         }
@@ -219,14 +222,19 @@ void Library::createAdmin(string& name, string& username, string& password) {
 
 
 void Library::removeAdminById(int id) {
-    int size = libraryAdmins.getSize() ;
+    int size = libraryAdmins.getSize();
+
     for (int i = 0; i < size; ++i) {
-        if( libraryAdmins[i]->getId() == id ){
-            libraryAdmins.removeAt(i) ;
-            break;
+        if (libraryAdmins[i]->getId() == id) {
+            libraryAdmins.removeAt(i);
+            std::cout << "Admin with ID " << id << " removed successfully!" << std::endl;
+            return; // Exit the function after removing the admin
         }
     }
+
+    throw std::runtime_error("Admin with ID " + std::to_string(id) + " not found!");
 }
+
 
 Admin *Library::getAdmin(int id) {
     int size = libraryAdmins.getSize() ;
@@ -279,27 +287,32 @@ Book *Library::findBookById(int id)const {
     throw std::invalid_argument("id");
 }
 
-void Library::readCustomers() {
+void Library::readCustomersData() {
     DynamicArray<Customer*> customers ;
     customers = ::readCustomers(CustomersFilePath) ;
     libraryCustomers = customers ;
 }
 
-void Library::readAdmins() {
-    DynamicArray<Admin*> admins ;
+void Library::readAdminsData() {
+    auto admins = new DynamicArray<Admin*> ;
     admins = ::readAdmins(AdminsFilePath) ;
-    libraryAdmins = admins ;
+    libraryAdmins = *admins ;
 }
 
-void Library::readBooks() {
+void Library::readBooksData() {
     DynamicArray<Book*> books ;
     books = ::readBooks(booksFilePath) ;
     libraryBooks = books ;
 }
 
 void Library::saveData() {
-    ::saveAdminsToCSV( libraryAdmins , AdminsFilePath ) ;
-    ::saveBooks( libraryBooks  , booksFilePath ) ;
-    ::saveCustomer( libraryCustomers , CustomersFilePath ) ;
+    saveAdminsToCSV( libraryAdmins , AdminsFilePath ) ;
+    saveBooks( libraryBooks  , booksFilePath ) ;
+    saveCustomer( libraryCustomers , CustomersFilePath ) ;
 }
+
+Library::Library() {
+
+}
+
 

@@ -2,29 +2,44 @@
 // Created by Mohammed Ashraf(LOGAN0X) on 5/22/2023.
 //
 #include <fstream>
-#include "Application/src/Admin.h"
+#include <sstream>
+#include "../Application/src/Admin.h"
+#include "../Utility/DynamicArray.h"
+#include "../Application/src/Library.h"
+#include "../Application/src/Customer.h"
+
 
 void saveAdminsToCSV(const DynamicArray<Admin*>& admins, const std::string& filename) {
-    std::ofstream writeFile(filename, std::ios::trunc);
-    if (!writeFile) {
-        std::cerr << "Error opening file: " << filename << std::endl;
-        return;
+    std::ofstream file(filename);
+
+    if (file) {
+        // Write the header line
+        file << "ID,Name,Username,Password" << std::endl;
+
+        for (int i = 0; i < admins.getSize(); ++i) {
+            Admin* admin = admins[i];
+            file << admin->getId() << ","
+                 << admin->getName() << ","
+                 << admin->getUsername() << ","
+                 << admin->getPassword() << std::endl;
+
+            if (!file) {
+                std::cout << "Error: Failed to write data for an admin." << std::endl;
+                return;
+            }
+        }
+
+        file.close();
+        std::cout << "Admins data saved to " << filename << " successfully." << std::endl;
+    } else {
+        std::cout << "Error: Unable to open the file for writing." << std::endl;
     }
-
-    writeFile << "ID,Name,Username,Password\n";
-
-    for (const Admin* admin : admins) {
-        writeFile << admin->getId() << ","
-                  << admin->getName() << ","
-                  << admin->getUsername() << ","
-                  << admin->getPassword() << "\n";
-    }
-
-    writeFile.close();
 }
 
-DynamicArray<Admin*> readAdmins(const std::string& filename) {
-    DynamicArray<Admin*> admins;
+
+
+DynamicArray<Admin*>* readAdmins(const std::string& filename) {
+    auto admins = new DynamicArray<Admin*>();
 
     std::ifstream readFile(filename);
     if (!readFile) {
@@ -41,7 +56,7 @@ DynamicArray<Admin*> readAdmins(const std::string& filename) {
         std::string field;
 
         std::getline(iss, field, ',');
-        int id = std::stoi(field);
+        int id = stoi( field);
 
         std::getline(iss, field, ',');
         std::string name = field;
@@ -52,11 +67,12 @@ DynamicArray<Admin*> readAdmins(const std::string& filename) {
         std::getline(iss, field);
         std::string password = field;
 
-        Admin* admin = new Admin(id, name, username, password);
-        admins.push_back(admin);
+        Admin* admin = new Admin(name, username, password,id);
+        admins->insert(admin);
     }
 
     readFile.close();
 
     return admins;
 }
+

@@ -29,13 +29,13 @@ void Book::markAsReturned() {
 }
 bool Book::isBorrowed() const {
     return borrowed;
-                /** Book book("QUEEN'S GAMBIT", "F. Scott Fitzgerald", "Fiction");
-                book.printInfo();  // Borrowed: No
-                book.markAsBorrowed();
-                book.printInfo();  // Borrowed: Yes
-                book.markAsReturned();
-                book.printInfo();  // Borrowed: No
-                **/
+    /** Book book("QUEEN'S GAMBIT", "F. Scott Fitzgerald", "Fiction");
+    book.printInfo();  // Borrowed: No
+    book.markAsBorrowed();
+    book.printInfo();  // Borrowed: Yes
+    book.markAsReturned();
+    book.printInfo();  // Borrowed: No
+    **/
 }
 
 // Initialize the static member variable

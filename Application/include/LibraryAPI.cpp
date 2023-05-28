@@ -107,15 +107,15 @@ int LibraryAPI::getCustomerBorrowedBooksCount(int customerId) const {
 }
 
 void LibraryAPI::readBooksData() {
-    lib->readBooks() ;
+    lib->readBooksData() ;
 }
 
 void LibraryAPI::readAdminsData() {
-    lib->readAdmins() ;
+    lib->readAdminsData() ;
 }
 
 void LibraryAPI::readCustomersData() {
-    lib->readCustomers() ;
+    lib->readCustomersData() ;
 }
 
 void LibraryAPI::saveData() {
