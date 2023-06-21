@@ -11,6 +11,13 @@ class Book {
 public:
     Book(std::string bookTitle, std::string bookAuthor, std::string bookCategory)
             : id(nextId++), title(std::move(bookTitle)), author(std::move(bookAuthor)), category(std::move(bookCategory)), borrowed(false) {}
+    Book(std::string bookTitle, std::string bookAuthor, std::string bookCategory,int id)
+            : id(id),
+            title(std::move(bookTitle)),
+            author(std::move(bookAuthor)),
+            category(std::move(bookCategory)),
+            borrowed(false) {}
+
     Book() = default;   // define default constructor
 
 

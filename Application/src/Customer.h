@@ -12,7 +12,8 @@ public:
     /** Constructors **/
     explicit Customer(std::string name);
     Customer(std::string name,int id) ;
-    Customer()= default;
+    Customer(std::string name,int id,DynamicArray<int>* booksIds);
+    Customer() = default;
 
     /** Const Methods **/
     DynamicArray<int> getBorrowedBooksIds() const;

@@ -1,14 +1,13 @@
-
 #ifndef LIBRARY_MANAGEMENT_SYSTEM_LIBRARY_H
 #define LIBRARY_MANAGEMENT_SYSTEM_LIBRARY_H
 //
 // Created by Abdelrahman on 5/18/2023.
 //
 
-#include "..\Infrastructure\src\book_infrastructure.h"
+#include "..\..\Infrastructure\src\book_infrastructure.h"
 #include "..\Infrastructure\src\customer_infrastructure.h"
 #include "..\Infrastructure\src\Admin_infrastructure.h"
-#include "DynamicArray.h"
+#include "..\Utility\DynamicArray.h"
 #include "Book.h"
 #include "Customer.h"
 #include "Admin.h"
@@ -22,7 +21,7 @@ public:
 
     Library();
 
-    explicit Library(const string &adminsFilePath);
+//    explicit Library(const string &adminsFilePath){};
 
 /*Saving data in files*/
     void saveData();
@@ -69,9 +68,13 @@ private:
     DynamicArray<Admin *> libraryAdmins ;
     DynamicArray<Customer *> libraryCustomers ;
     DynamicArray<Book *> libraryBooks;
-    string booksFilePath = R"(..\..\..\Infrastructure\src\booksData.csv)" ;
-    string CustomersFilePath = R"(..\..\..\Infrastructure\src\customersData.csv)" ;
-    string AdminsFilePath = R"(..\..\..\Infrastructure\src\adminsData.csv)" ;
+
+
+    string booksFilePath = R"(..\Infrastructure\src\booksData.csv)" ;
+    string CustomersFilePath = R"(..\Infrastructure\src\customersData.csv)" ;
+    string AdminsFilePath = R"(..\Infrastructure\src\adminsData.csv)" ;
+
+
     static bool isPasswordValid( string& password);
     bool isUsernameUnique( string& username);
     bool isBookBorrowed(int bookId ) const;

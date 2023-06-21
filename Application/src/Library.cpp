@@ -55,8 +55,8 @@ DynamicArray<Book *> Library::getBooksByIds(const DynamicArray<int>& booksIds) c
 void Library::removeBook(int bookId) {
     int size = libraryBooks.getSize() ;
     for (int i = 0; i < size ; ++i) {
-        if ( libraryBooks[i]->getId() == bookId ){
-            libraryBooks.removeAt(i) ;
+        if (libraryBooks[i]->getId() == bookId) {
+            libraryBooks.removeAt(i);
             break;
         }
     }
@@ -185,9 +185,11 @@ void Library::removeCustomerById(int id) {
     for (int i = 0; i < size ; ++i) {
         if( libraryCustomers[i]->getId() == id ){
             libraryCustomers.removeAt(i) ;
-            break;
+            std::cout << "Customer with ID " << id << " removed successfully!" << std::endl;
+            return;
         }
     }
+    throw std::runtime_error("Customer with ID " + std::to_string(id) + " not found!");
 
 }
 
@@ -195,7 +197,7 @@ Customer * Library::getCustomer(int id) const {
     int size = libraryCustomers.getSize() ;
 
     for (int i = 0; i < size ; ++i) {
-        int idd = libraryCustomers[i]->getId();
+        int id = libraryCustomers[i]->getId();
         if ( libraryCustomers[i]->getId() == id ){
             return libraryCustomers[i] ;
         }
@@ -288,9 +290,9 @@ Book *Library::findBookById(int id)const {
 }
 
 void Library::readCustomersData() {
-    DynamicArray<Customer*> customers ;
+    auto customers = new DynamicArray<Customer*> ;
     customers = ::readCustomers(CustomersFilePath) ;
-    libraryCustomers = customers ;
+    libraryCustomers = *customers ;
 }
 
 void Library::readAdminsData() {
@@ -300,9 +302,10 @@ void Library::readAdminsData() {
 }
 
 void Library::readBooksData() {
-    DynamicArray<Book*> books ;
+    DynamicArray<Book*>* books ;
     books = ::readBooks(booksFilePath) ;
-    libraryBooks = books ;
+    cout << books->getSize();
+    libraryBooks = *books ;
 }
 
 void Library::saveData() {

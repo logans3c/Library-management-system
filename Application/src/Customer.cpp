@@ -14,7 +14,9 @@ Customer::Customer(std::string name) : User(std::move(name)) {
 }
 Customer::Customer(std::string name,int id) : User(std::move(name),id) {
 }
-
+Customer::Customer(std::string name,int id,DynamicArray<int>* booksIds) : User(std::move(name),id) {
+    borrowedBooksId = *booksIds;
+}
 /** Const Methods **/
 
 DynamicArray<int> Customer::getBorrowedBooksIds() const {

@@ -6,7 +6,7 @@
 #include "../Application/src/Customer.h"
 #include "../Utility/DynamicArray.h"
 #include "../Application/src/Library.h"
-#include "customer_infrastructure.h"
+#include "customer_infrastructure.h"`
 
 void saveCustomer(const DynamicArray<Customer*>& libraryCustomers, const std::string& filename) {
     std::ofstream writeFile(filename, std::ios::trunc);
@@ -41,8 +41,8 @@ void saveCustomer(const DynamicArray<Customer*>& libraryCustomers, const std::st
 
 
 
-DynamicArray<Customer*> readCustomers(const std::string& filename) {
-    DynamicArray<Customer*> customers;
+DynamicArray<Customer*>* readCustomers(const std::string& filename) {
+    auto customers = new DynamicArray<Customer*>();
 
     std::ifstream readFile(filename);
     if (!readFile) {
@@ -67,29 +67,15 @@ DynamicArray<Customer*> readCustomers(const std::string& filename) {
         std::getline(iss, field);
         std::istringstream issBooks(field);
         std::string bookId;
-        DynamicArray<int> borrowedBooksIds;
+        auto  borrowedBooksIds = new DynamicArray<int>;
 
         while (std::getline(issBooks, bookId, ',')) {
-            borrowedBooksIds.insert(std::stoi(bookId));
+            borrowedBooksIds->insert(std::stoi(bookId));
         }
 
         // Create a Customer object using the constructor
-        Customer* customer = new Customer(name, id);
-        customer->getBorrowedBooksIds() = borrowedBooksIds;
-        customers.insert(customer);
-
-        // Print customer information
-        std::cout << "Customer ID: " << customer->getId() << std::endl;
-        std::cout << "Name: " << customer->getName() << std::endl;
-        std::cout << "Borrowed Books IDs: ";
-        for (int i = 0; i < borrowedBooksIds.getSize(); ++i) {
-            std::cout << borrowedBooksIds[i];
-            if (i < borrowedBooksIds.getSize() - 1) {
-                std::cout << ", ";
-            }
-        }
-        std::cout << std::endl;
-        std::cout << "---------------------" << std::endl;
+        auto customer = new Customer(name, id,borrowedBooksIds);
+        customers->insert(customer);
     }
 
     readFile.close();

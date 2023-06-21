@@ -46,8 +46,8 @@ void saveBooks( DynamicArray<Book*>& books,const std::string& filename) {
         std::cout << "Error: Unable to open the file." << std::endl;
     }
 }
-DynamicArray<Book*> readBooks(const std::string& filename) {
-    DynamicArray<Book*> books;
+DynamicArray<Book *> * readBooks(const std::string& filename) {
+    auto books = new DynamicArray<Book*>();
 
     std::ifstream readFile(filename);
     if (!readFile) {
@@ -79,8 +79,8 @@ DynamicArray<Book*> readBooks(const std::string& filename) {
         bool borrowed = (field == "1");
 
         // Create a Book object using the constructor
-        Book* book = new Book(title, author, category);
-        books.insert(book);
+        Book* book = new Book(title, author, category,id);
+        books->insert(book);
     }
 
     readFile.close();

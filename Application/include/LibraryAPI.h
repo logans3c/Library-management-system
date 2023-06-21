@@ -9,7 +9,7 @@
 #include "Admin.h"
 #include "Book.h"
 #include "Customer.h"
-#include "DynamicArray.h"
+#include "../Utility/DynamicArray.h"
 
 class LibraryAPI {
 public:
